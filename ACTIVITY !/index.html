@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Feud Game</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+
+    <!-- Bootstrap Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Family Feud</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="rules.html">Rules</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="leaderboard.html">Leaderboard</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Game Header -->
+    <header id="game-header" class="text-center bg-primary text-white py-3">
+        <h1>Family Feud Game</h1>
+    </header>
+
+    <!-- Main Game Container -->
+    <div class="container" id="game-container" style="max-width: 960px; margin: auto; padding: 20px;">
+        <div class="row">
+            <!-- Game Setup Section -->
+            <div class="col-md-8">
+                <h2 class="text-center">Welcome to Family Feud!</h2>
+                <p>Two teams will compete to guess the most popular answers. The team with the most points wins!</p>
+
+                <div class="game-setup">
+                    <h3>Game Setup</h3>
+                    <ul class="list-unstyled">
+                        <li>Answer 1: __________</li>
+                        <li>Answer 2: __________</li>
+                        <li>Answer 3: __________</li>
+                        <li>Answer 4: __________</li>
+                    </ul>
+
+                    <!-- Answer submission form -->
+                    <form id="answer-form" class="form-inline justify-content-center my-3">
+                        <input type="text" class="form-control mr-2" name="user-answer" placeholder="Enter your answer" required>
+                        <button type="submit" class="btn btn-primary">Submit Answer</button>
+                    </form>
+
+                    <!-- Team score table -->
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th>Team 1</th>
+                                <th>Team 2</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Start game button -->
+                    <button id="start-game" class="btn btn-success btn-lg btn-block my-3">Start Game</button>
+
+                    <div id="result" class="bg-light p-3 text-center">
+                        <!-- Result of the game will appear here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game Controls and Timer -->
+            <div class="col-md-4">
+                <!-- Countdown Timer -->
+                <div id="countdown-timer" class="bg-warning text-center py-3 mb-3">
+                    Round starts in: <span id="timer">10</span> seconds
+                </div>
+
+                <!-- Progress bar for answering time -->
+                <div class="progress mb-3">
+                    <progress id="answer-progress" class="progress-bar bg-info" value="100" max="100"></progress>
+                </div>
+
+                <!-- Team-specific controls -->
+                <div class="team-controls d-flex justify-content-around mb-3">
+                    <button class="btn btn-warning">Pass</button>
+                    <button class="btn btn-warning">Play</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Player names form -->
+        <div class="row mt-4">
+            <div class="col">
+                <form action="start-game.html" method="GET">
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <label for="team1-player1">Team 1, Player 1:</label>
+                            <input type="text" class="form-control" id="team1-player1" name="team1-player1" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="team1-player2">Team 1, Player 2:</label>
+                            <input type="text" class="form-control" id="team1-player2" name="team1-player2" required>
+                        </div>
+                    </div>
+                    <div class="form-row mt-3">
+                        <div class="col-md-6">
+                            <label for="team2-player1">Team 2, Player 1:</label>
+                            <input type="text" class="form-control" id="team2-player1" name="team2-player1" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="team2-player2">Team 2, Player 2:</label>
+                            <input type="text" class="form-control" id="team2-player2" name="team2-player2" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block mt-4">Start Game</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Countdown and Progress Bar -->
+    <script>
+        // Function to start the countdown
+        function startCountdown() {
+            var countdownElement = document.getElementById('countdown-timer');
+            var timerElement = document.getElementById('timer');
+            var timeLeft = 10;
+
+            countdownElement.style.display = 'block';
+
+            var countdownInterval = setInterval(function() {
+                timeLeft--;
+                timerElement.textContent = timeLeft;
+
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    countdownElement.style.display = 'none';
+                    alert('Round Start!');
+                    startProgressBar();
+                }
+            }, 1000);
+        }
+
+        // Function to start the progress bar for answering
+        function startProgressBar() {
+            var progressBar = document.getElementById('answer-progress');
+            var currentTime = 100;
+            var progressInterval = setInterval(function() {
+                currentTime--;
+                progressBar.value = currentTime;
+
+                if (currentTime <= 0) {
+                    clearInterval(progressInterval);
+                    alert('Time is up!');
+                }
+            }, 100);
+        }
+
+        // Start the countdown when the page is fully loaded
+        window.onload = startCountdown;
+    </script>
+
+    <!-- Optional JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Optional JavaScript -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Link to your JavaScript file -->
+<script src="game.js"></script>
+</body>
+
+
+</body>
+</html>

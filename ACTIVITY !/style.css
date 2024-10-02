@@ -1,0 +1,214 @@
+/* General styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #007bff; /* Bootstrap primary color */
+    padding: 20px;
+    text-align: center;
+    color: white;
+    border-bottom: 5px solid #0056b3; /* Slightly darker border for emphasis */
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#game-container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 80vh; /* Responsive height */
+}
+
+h2 {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #333;
+}
+
+p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+/* Navigation menu styles */
+nav ul {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    list-style: none;
+    margin: 20px 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+.nav-link {
+    color: #007bff;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    color: #0056b3;
+}
+
+/* Game container and form */
+#answer-form {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+#answer-form input {
+    flex-grow: 1;
+    margin-right: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#answer-form button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#answer-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Team score table */
+.score-table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.score-table th, .score-table td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    font-size: 1.2rem;
+}
+
+.score-table th {
+    background-color: #007bff;
+    color: white;
+    text-transform: uppercase;
+}
+
+.score-table td {
+    font-weight: bold;
+    background-color: #f7f7f7;
+}
+
+.score-table tbody td {
+    font-size: 1.5rem;
+}
+
+.score-table {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Game buttons */
+button[type="button"] {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    margin-right: 10px;
+}
+
+button[type="button"]:hover {
+    background-color: #218838;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.team-controls {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* Countdown timer and progress bar */
+#countdown-timer {
+    font-size: 1.5rem;
+    color: #ff4757;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#answer-progress {
+    width: 100%;
+    height: 30px;
+}
+
+#result {
+    padding: 20px;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* Buzzer image */
+img {
+    display: block;
+    margin: 20px auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #game-container {
+        padding: 10px;
+        height: auto;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    .team-controls {
+        flex-direction: column;
+    }
+
+    button[type="button"] {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    #game-container {
+        padding: 15px;
+        height: 90vh;
+    }
+}
