@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Feud Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Family Feud Game</h1>
+    <nav>
+        <ul>
+            <li><a href="#Home">Home</a></li>
+            <li><a href="#rules">Rules</a></li>
+            <li><a href="#Leaderboard">Leaderboard</a></li>
+        </ul>
+    </nav>
+
+    <section>
+        <p>Welcome to the Family Feud-style game! In this game, two teams compete by answering survey questions. The goal is to guess the most popular answers to the questions asked to a group of people. The team with the most points at the end of the game wins!</p>
+    </section>
+
+    <div id="game-container">
+        <h2>Game Setup</h2>
+        <p>Before starting, enter player names and select the number of teams. The host will read the questions and keep track of the scores. Let’s get ready to play!</p>
+
+       
+
+        <h2>Countdown Timer</h2>
+        <div class="countdown-container">
+            <div class="countdown">
+                <span id="minutes">00</span>
+                <span class="time-label">Minutes</span>
+            </div>
+            <div class="countdown">
+                <span id="seconds">30</span>
+                <span class="time-label">Seconds</span>
+            </div>
+        </div>
+
+        <progress id="progress-bar" value="0" max="30"></progress>
+
+        <div id="Game-question">
+            <h2>QUESTION</h2>
+            <p id="question-text">Sino pinaka cute sa 01 ako syempre</p>
+        </div>
+        <h1>Family Feud Game</h1>
+        <h2>Answer Board</h2>
+        <ul id="answer-board">
+            <li>
+                <div class="answer">
+                    <div class="front">Answer Placeholder 1</div>
+                    <div class="back">Mahaba</div>
+                </div>
+            </li>
+            <li>
+                <div class="answer">
+                    <div class="front">Answer Placeholder 2</div>
+                    <div class="back">Score: 20</div>
+                </div>
+            </li>
+            <li>
+                <div class="answer">
+                    <div class="front">Answer Placeholder 3</div>
+                    <div class="back">Score: 30</div>
+                </div>
+            </li>
+            <li>
+                <div class="answer">
+                    <div class="front">Answer Placeholder 4</div>
+                    <div class="back">Score: 40</div>
+                </div>
+            </li>
+            <li>
+                <div class="answer">
+                    <div class="front">Answer Placeholder 5</div>
+                    <div class="back">Score: 50</div>
+                </div>
+            </li>
+            <li>
+                <div class="answer">
+                    <div class="front">Answer Placeholder 6</div>
+                    <div class="back">Score: 60</div>
+                </div>
+            </li>
+        </ul>
+     
+        <form id="answer-form">
+            <label for="user-answer">Your Answer:</label>
+            <input type="text" id="user-answer" name="user-answer" required>
+            <button type="submit">Submit Answer</button>
+        </form>
+
+        <h2>Team Scores</h2>
+        <table class="score-table">
+            <thead>
+                <tr>
+                    <th>Team 1</th>
+                    <th>Team 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="team1-score">0</td>
+                    <td id="team2-score">0</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div id="result" style="margin-top: 20px;">
+            <h2>Result</h2>
+            <p id="result-message">Your answer and points will appear here after submission.</p>
+        </div>
+    </div>
+
+    <audio id="background-music" controls autoplay loop>
+        <source src="Family.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
+
+    <footer>
+        <h3>Game Over</h3>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
